@@ -1,3 +1,4 @@
+// Initialization...
 const fcPlus = document.getElementById('fc-plus');
 const fcMinus = document.getElementById('fc-minus');
 const ePlus = document.getElementById('e-plus');
@@ -8,10 +9,13 @@ const economyTicket = document.getElementById("economy");
 
 let fcTicket = 0;
 let eTicket = 0;
+
+// Event Listener
 fcPlus.addEventListener('click', function(){
     fcTicket = addTicket(parseInt(firstClassTicket.value));
     showTicket(fcTicket, firstClassTicket);
-})
+});
+
 ePlus.addEventListener("click", function(){
     eTicket = addTicket(parseInt(economyTicket.value));
     showTicket(eTicket, economyTicket);
@@ -21,13 +25,17 @@ fcMinus.addEventListener("click", function(){
     fcTicket = subTicket(parseInt(firstClassTicket.value));
     showTicket(fcTicket, firstClassTicket);
 });
+
 eMinus.addEventListener("click", function(){
     eTicket = subTicket(parseInt(economyTicket.value));
     showTicket(eTicket, economyTicket);
-})
+});
+
+// Function...
 function addTicket(ticketNumber){
     return ++ticketNumber;
 }
+
 function subTicket(ticketNumber){
     return ticketNumber <= 0 ? 0 : --ticketNumber;
 }
@@ -45,21 +53,13 @@ const showTotalCost = () =>{
     document.getElementById('vat').innerText = vat;
     document.getElementById('total').innerText = total;
 }
-// const submit=(event)=> {
-//     console.log(25)
-//     // For this example, don't actually submit the form
-//     event.preventDefault();
-//   }
-// const form = document.getElementById('form');
-// form.onsubmit = submit;
+
 document.getElementById('form').addEventListener('submit', showBookingDetails);
 function showBookingDetails(evt){
-    console.log(evt.target.initial.value);
-    console.log(evt.target.departure.value);
     document.getElementById('booking-section').style.display = "none";
     const bookingDetails = document.getElementById('booking-form');
     bookingDetails.style.display = 'block';
-    bookingDetails.style.margin = '150px 230px 0 0'
+    bookingDetails.style.margin = '0 230px 0 0'
     const from = document.getElementById('from');
     from.innerText = evt.target.initial.value;
     const to = document.getElementById('to');
